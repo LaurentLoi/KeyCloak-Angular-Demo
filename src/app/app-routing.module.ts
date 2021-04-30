@@ -2,15 +2,32 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {IndexComponent} from './root/index/index.component';
 import {RootComponent} from './root/root.component';
+import {AuthGuard} from './modules/keycloak/guards/auth.guard';
+import {ParcoursComponent} from './pages/parcours/parcours.component';
+import {E403Component} from './common/errors/e403/e403.component';
 
 const routes: Routes = [
   {
     path: '',
     component: RootComponent,
+    canActivate: [AuthGuard],
+    data: {roles: ['user']},
     children: [
       {
         path: 'index',
-        component: IndexComponent
+        component: IndexComponent,
+        canActivate: [AuthGuard],
+        data: {roles: ['user']}
+      },
+      {
+        path: 'parcours',
+        component: ParcoursComponent,
+        canActivate: [AuthGuard],
+        data: {roles: ['admin']}
+      },
+      {
+        path: 'unauthorized',
+        component: E403Component
       }
     ]
   }

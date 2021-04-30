@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  keycloakConfig: {
+    clientId: 'golf-ui',
+    realm: 'services',
+    url: 'http://localhost:8180/auth'
+  }
 };
 
 /*

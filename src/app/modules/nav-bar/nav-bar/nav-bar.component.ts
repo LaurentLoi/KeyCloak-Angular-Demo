@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BASE_TITLE, NAV_TITLE} from '../../../config/base-config';
+import {AuthService} from '../../keycloak/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,7 +14,7 @@ export class NavBarComponent implements OnInit {
 
   previousElement;
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -31,4 +32,7 @@ export class NavBarComponent implements OnInit {
     ($event.target as HTMLLinkElement).classList.add('active');
   }
 
+  logout(): void {
+    this.authService.logout();
+  }
 }
