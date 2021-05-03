@@ -1,6 +1,10 @@
 import {Injectable} from '@angular/core';
 import {KeycloakService} from 'keycloak-angular';
 import {Keycloak} from 'keycloak-angular/lib/core/services/keycloak.service';
+import {BehaviorSubject, from, Observable, ObservedValueOf, of} from 'rxjs';
+import {Parcours} from '../../../common/models/parcours.model';
+import {filter} from 'rxjs/operators';
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +16,15 @@ export class AuthService {
 
   getLoggedUser(): Keycloak.KeycloakTokenParsed {
     try {
-      const userDetails = this.keycloakService.getKeycloakInstance().idTokenParsed;
-      console.log('UserDetails: ', userDetails);
-      console.log('UserRoles: ', this.keycloakService.getUserRoles());
-      return userDetails;
+      return this.keycloakService.getKeycloakInstance().idTokenParsed;
     } catch (e) {
       console.log('getLoggedUser Exception', e);
       return undefined;
     }
+  }
+
+  getToken(): Observable<string> {
+    return from(this.keycloakService.getToken());
   }
 
   logout(): void {

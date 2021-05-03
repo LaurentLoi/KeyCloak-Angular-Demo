@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ParcoursService} from './parcours.service';
+import {first} from 'rxjs/operators';
 import {AuthService} from '../../modules/keycloak/services/auth.service';
 
 @Component({
@@ -8,8 +10,14 @@ import {AuthService} from '../../modules/keycloak/services/auth.service';
 })
 export class ParcoursComponent implements OnInit {
 
-  constructor() { }
+  parcours$ = this.parcoursService.parcours$;
 
-  ngOnInit(): void {}
+  constructor(private parcoursService: ParcoursService) {
+    this.parcoursService.loadAllParcours();
+  }
+
+  async ngOnInit(): Promise<void> {
+    console.log(await this.parcours$.pipe(first()).toPromise());
+  }
 
 }

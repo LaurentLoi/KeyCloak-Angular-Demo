@@ -7,7 +7,10 @@ export const environment = {
   keycloakConfig: {
     clientId: 'golf-ui',
     realm: 'services',
-    url: 'http://localhost:8180/auth'
+    url: 'http://localhost:8180/auth',
+    credentials: {
+      secret: 'd86a18d3-beae-4bcd-8aa6-d0936cffeb3c'
+    }
   }
 };
 

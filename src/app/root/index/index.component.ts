@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BASE_TITLE} from '../../config/base-config';
-import {AuthService} from '../../modules/keycloak/services/auth.service';
 
 @Component({
   selector: 'app-index',
@@ -11,10 +10,10 @@ export class IndexComponent implements OnInit {
 
   BASE_TITLE = BASE_TITLE;
 
-  constructor(private authService: AuthService) { }
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.authService.getLoggedUser();
   }
 
 }

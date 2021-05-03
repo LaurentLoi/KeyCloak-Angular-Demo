@@ -1,16 +1,19 @@
 import {APP_INITIALIZER, NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RootComponent } from './root/root.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {RootComponent} from './root/root.component';
 import {NavBarModule} from './modules/nav-bar/nav-bar.module';
-import { IndexComponent } from './root/index/index.component';
+import {IndexComponent} from './root/index/index.component';
 import {initializer} from './AppInit';
 import {KeycloakService} from 'keycloak-angular';
 import {AuthService} from './modules/keycloak/services/auth.service';
-import { ParcoursComponent } from './pages/parcours/parcours.component';
-import { E403Component } from './common/errors/e403/e403.component';
+import {ParcoursComponent} from './pages/parcours/parcours.component';
+import {E403Component} from './common/errors/e403/e403.component';
+import {HttpClientModule} from '@angular/common/http';
+import {authInterceptorProviders} from './modules/keycloak/interceptors/http-request.interceptor';
+import {KeycloakModule} from './modules/keycloak/keycloak.module';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,13 @@ import { E403Component } from './common/errors/e403/e403.component';
     ParcoursComponent,
     E403Component
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NavBarModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NavBarModule,
+    KeycloakModule
+  ],
   providers: [
     KeycloakService,
     {
@@ -32,8 +37,11 @@ import { E403Component } from './common/errors/e403/e403.component';
       useFactory: initializer,
       multi: true,
       deps: [KeycloakService]
-    }, AuthService
+    },
+    AuthService,
+    authInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

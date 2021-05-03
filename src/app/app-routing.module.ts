@@ -5,6 +5,7 @@ import {RootComponent} from './root/root.component';
 import {AuthGuard} from './modules/keycloak/guards/auth.guard';
 import {ParcoursComponent} from './pages/parcours/parcours.component';
 import {E403Component} from './common/errors/e403/e403.component';
+import {UsersComponent} from './modules/keycloak/pages/users/users.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,12 @@ const routes: Routes = [
         component: ParcoursComponent,
         canActivate: [AuthGuard],
         data: {roles: ['admin']}
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        canActivate: [AuthGuard],
+        data: {roles: ['user']}
       },
       {
         path: 'unauthorized',
