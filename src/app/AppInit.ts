@@ -7,12 +7,12 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
     initOptions: {
       onLoad: 'login-required',
       checkLoginIframe: false
-    },
+    }/*,
     enableBearerInterceptor: true,
     bearerPrefix: 'Bearer',
     bearerExcludedUrls: [
       '/assets',
-      '/clients/public']
+      '/clients/public']*/
   };
   return (): Promise<any> => keycloak.init(options);
 }

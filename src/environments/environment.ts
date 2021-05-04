@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
   keycloakConfig: {
-    clientId: 'golf-ui',
-    realm: 'services',
+    clientId: 'cat-ui',
+    realm: 'Keycloak-Demo',
     url: 'http://localhost:8180/auth',
     credentials: {
-      secret: 'd86a18d3-beae-4bcd-8aa6-d0936cffeb3c'
+      secret: 'd75b2797-b1a2-422f-803d-19941d1faced'
     }
   }
 };

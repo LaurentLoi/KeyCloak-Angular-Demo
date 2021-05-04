@@ -3,9 +3,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {IndexComponent} from './root/index/index.component';
 import {RootComponent} from './root/root.component';
 import {AuthGuard} from './modules/keycloak/guards/auth.guard';
-import {ParcoursComponent} from './pages/parcours/parcours.component';
+import {CatComponent} from './pages/cats/cat.component';
 import {E403Component} from './common/errors/e403/e403.component';
 import {UsersComponent} from './modules/keycloak/pages/users/users.component';
+import {UserComponent} from './modules/keycloak/pages/user/user.component';
 
 const routes: Routes = [
   {
@@ -21,16 +22,22 @@ const routes: Routes = [
         data: {roles: ['user']}
       },
       {
-        path: 'parcours',
-        component: ParcoursComponent,
+        path: 'cats',
+        component: CatComponent,
         canActivate: [AuthGuard],
-        data: {roles: ['admin']}
+        data: {roles: ['user']}
       },
       {
         path: 'users',
         component: UsersComponent,
         canActivate: [AuthGuard],
-        data: {roles: ['user']}
+        data: {roles: ['admin']}
+      },
+      {
+        path: 'users/:id',
+        component: UserComponent,
+        canActivate: [AuthGuard],
+        data: {roles: ['manager']}
       },
       {
         path: 'unauthorized',

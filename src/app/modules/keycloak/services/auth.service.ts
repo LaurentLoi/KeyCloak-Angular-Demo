@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {KeycloakService} from 'keycloak-angular';
 import {Keycloak} from 'keycloak-angular/lib/core/services/keycloak.service';
 import {BehaviorSubject, from, Observable, ObservedValueOf, of} from 'rxjs';
-import {Parcours} from '../../../common/models/parcours.model';
+import {Cat} from '../../../common/models/cat.model';
 import {filter} from 'rxjs/operators';
 import {User} from '../models/user.model';
 

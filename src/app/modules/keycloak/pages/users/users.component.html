@@ -5,9 +5,19 @@
   </div>
   <div class="col-2"></div>
 
-  <div *ngIf="(users$ | async) as users">
-    <div *ngFor="let user of users">
-      <div>{{user.id}} {{user.username}}</div>
-    </div>
-  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>Username</th>
+      <th>Id</th>
+    </tr>
+    </thead>
+
+    <tbody *ngIf="(users$ | async) as users">
+    <tr *ngFor="let user of users, let index = index">
+      <td>{{user.username}}</td>
+      <td>{{user.id}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../modules/keycloak/services/auth.service';
-import {ParcoursService} from '../pages/parcours/parcours.service';
+import {CatService} from '../pages/cats/cat.service';
 
 @Component({
   selector: 'app-root',

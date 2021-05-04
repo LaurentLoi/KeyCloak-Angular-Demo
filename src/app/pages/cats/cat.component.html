@@ -1,0 +1,32 @@
+<div class="row g-0 d-flex align-items-center m-5">
+  <div class="col-2"></div>
+  <div class="col-8 text-center">
+    <h3>Cats :</h3>
+  </div>
+  <div class="col-2"></div>
+
+  <table class="table table-bordered table-striped" >
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Owner name</th>
+    </tr>
+    </thead>
+
+    <tbody *ngIf="(cats$ | async) as cats">
+    <tr *ngFor="let cat of cats, let index = index">
+      <td>{{cat.catId}}</td>
+      <td>{{cat.name}}</td>
+      <td>{{cat.age}}</td>
+      <td class="actionable" routerLink="/users/{{cat.ownerId}}">
+        <button class="btn btn-ghost-dark">
+          <app-user-display [userId]="cat.ownerId"></app-user-display>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

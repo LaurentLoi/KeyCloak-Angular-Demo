@@ -21,6 +21,7 @@ export class UserService {
   loadAllUsers(): void {
     this.getAllUsers().subscribe(users => {
       this.users.next(users);
+      console.log('USERS LOADED');
     });
   }
 
@@ -29,7 +30,7 @@ export class UserService {
   }
 
   getUserById(userId: string): Observable<User> {
-    return this.httpClient.get<User>(USER_API_URL + userId);
+    return this.httpClient.get<User>(USER_API_URL + '/' + userId);
   }
 
 

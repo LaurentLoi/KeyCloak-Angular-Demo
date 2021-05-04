@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ParcoursComponent } from './parcours.component';
+import { UserDisplayComponent } from './user-display.component';
 
-describe('ParcoursComponent', () => {
-  let component: ParcoursComponent;
-  let fixture: ComponentFixture<ParcoursComponent>;
+describe('UserDisplayComponent', () => {
+  let component: UserDisplayComponent;
+  let fixture: ComponentFixture<UserDisplayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ParcoursComponent ]
+      declarations: [ UserDisplayComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ParcoursComponent);
+    fixture = TestBed.createComponent(UserDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
