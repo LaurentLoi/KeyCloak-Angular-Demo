@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {User} from '../../models/user.model';
-import {UserService} from '../../services/user.service';
+import {User} from '../../../models/user.model';
+import {UserService} from '../../../services/user.service';
 import {ActivatedRoute} from '@angular/router';
-import {Group} from '../../models/group.model';
+import {Group} from '../../../models/group.model';
 
 @Component({
   selector: 'app-user',

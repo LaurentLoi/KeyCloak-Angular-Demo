@@ -3,6 +3,7 @@ import {KeycloakAuthGuard, KeycloakService} from 'keycloak-angular';
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {async} from 'rxjs';
 import {rejects} from 'assert';
+import {UserService} from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ import {rejects} from 'assert';
 export class AuthGuard extends KeycloakAuthGuard{
 
 
-  constructor(protected router: Router, protected keycloakAngular: KeycloakService) {
+  constructor(protected router: Router,
+              protected keycloakAngular: KeycloakService,
+              private userService: UserService) {
     super(router, keycloakAngular);
   }
 
@@ -37,6 +40,8 @@ export class AuthGuard extends KeycloakAuthGuard{
         console.log('GRANTED FALSE');
         this.router.navigate(['/unauthorized']).then();
         resolve(granted);
+      } else {
+        this.userService.setCurrentUserRoles(this.keycloakAngular.getUserRoles());
       }
       resolve(granted);
     });

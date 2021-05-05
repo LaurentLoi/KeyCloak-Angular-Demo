@@ -12,9 +12,11 @@ import {KeycloakService} from 'keycloak-angular';
 export class CatComponent implements OnInit {
 
   cats$ = this.catService.cats$;
+  userRoles = this.userService.currentUserRoles;
 
   constructor(
     private catService: CatService,
+    private userService: UserService,
     private keycloakService: KeycloakService
   ) {
     this.catService.loadAllCats();

@@ -5,10 +5,10 @@ import {RootComponent} from './root/root.component';
 import {AuthGuard} from './modules/keycloak/guards/auth.guard';
 import {CatComponent} from './pages/cats/cat.component';
 import {E403Component} from './common/errors/e403/e403.component';
-import {UsersComponent} from './modules/keycloak/pages/users/users.component';
-import {UserComponent} from './modules/keycloak/pages/user/user.component';
-import {GroupsComponent} from './modules/keycloak/pages/groups/groups.component';
-import {GroupComponent} from './modules/keycloak/pages/group/group.component';
+import {UsersComponent} from './modules/keycloak/pages/users-pages/users/users.component';
+import {UserComponent} from './modules/keycloak/pages/users-pages/user/user.component';
+import {GroupsComponent} from './modules/keycloak/pages/groups-pages/groups/groups.component';
+import {GroupComponent} from './modules/keycloak/pages/groups-pages/group/group.component';
 
 const routes: Routes = [
   {
@@ -33,7 +33,7 @@ const routes: Routes = [
         path: 'users',
         component: UsersComponent,
         canActivate: [AuthGuard],
-        data: {roles: ['admin']}
+        data: {roles: ['manager']}
       },
       {
         path: 'users/:id',

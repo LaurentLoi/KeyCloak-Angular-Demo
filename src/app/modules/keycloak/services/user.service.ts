@@ -16,6 +16,8 @@ export class UserService {
     filter(users => !!users)
   );
 
+  currentUserRoles: string[];
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -38,5 +40,8 @@ export class UserService {
     return this.httpClient.get<Group[]>(USER_API_URL + '/' + userId + '/groups');
   }
 
+  setCurrentUserRoles(roles: string[]): void {
+    this.currentUserRoles = roles;
+  }
 
 }

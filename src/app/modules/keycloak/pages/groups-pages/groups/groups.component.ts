@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GroupsService} from '../../services/groups.service';
+import {GroupsService} from '../../../services/groups.service';
 import {first} from 'rxjs/operators';
 
 @Component({
