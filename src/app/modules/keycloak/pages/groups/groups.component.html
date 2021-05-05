@@ -1,0 +1,23 @@
+<div class="row g-0 d-flex align-items-center m-5">
+  <div class="col-2"></div>
+  <div class="col-8 text-center">
+    <h3>Groups :</h3>
+  </div>
+  <div class="col-2"></div>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>Group Name</th>
+      <th>Id</th>
+    </tr>
+    </thead>
+
+    <tbody *ngIf="(groups$ | async) as groups">
+    <tr *ngFor="let group of groups, let index = index">
+      <td>{{group.name}}</td>
+      <td>{{group.id}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
