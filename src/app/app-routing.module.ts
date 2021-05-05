@@ -8,6 +8,7 @@ import {E403Component} from './common/errors/e403/e403.component';
 import {UsersComponent} from './modules/keycloak/pages/users/users.component';
 import {UserComponent} from './modules/keycloak/pages/user/user.component';
 import {GroupsComponent} from './modules/keycloak/pages/groups/groups.component';
+import {GroupComponent} from './modules/keycloak/pages/group/group.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,12 @@ const routes: Routes = [
       {
         path: 'groups',
         component: GroupsComponent,
+        canActivate: [AuthGuard],
+        data: {roles: ['manager']}
+      },
+      {
+        path: 'groups/:id',
+        component: GroupComponent,
         canActivate: [AuthGuard],
         data: {roles: ['manager']}
       },

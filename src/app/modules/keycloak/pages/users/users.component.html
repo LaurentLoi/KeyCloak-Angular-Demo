@@ -14,7 +14,7 @@
     </thead>
 
     <tbody *ngIf="(users$ | async) as users">
-    <tr *ngFor="let user of users, let index = index">
+    <tr *ngFor="let user of users" routerLink="/users/{{user.id}}">
       <td>{{user.username}}</td>
       <td>{{user.id}}</td>
     </tr>

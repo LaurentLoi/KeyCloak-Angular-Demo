@@ -4,6 +4,7 @@ import {filter} from 'rxjs/operators';
 import {Group} from '../models/group.model';
 import {HttpClient} from '@angular/common/http';
 import {GROUPS_API_URL} from '../../../config/http-config';
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,16 @@ export class GroupsService {
   private readonly groups = new BehaviorSubject<Group[]>(null);
   public readonly groups$ = this.groups.pipe(
     filter(groups => !!groups)
+  );
+
+  private readonly group = new BehaviorSubject<Group>(null);
+  public readonly group$ = this.group.pipe(
+    filter(group => !!group)
+  );
+
+  private readonly groupMembers = new BehaviorSubject<User[]>(null);
+  public readonly groupMembers$ = this.groupMembers.pipe(
+    filter(groupMembers => !!groupMembers)
   );
 
   constructor(private httpClient: HttpClient) {
@@ -29,7 +40,23 @@ export class GroupsService {
     return this.httpClient.get<Group[]>(GROUPS_API_URL);
   }
 
+  loadGroupById(groupId: string): void {
+    this.getGroupById(groupId).subscribe(group => {
+      this.group.next(group);
+    });
+  }
+
   getGroupById(groupId: string): Observable<Group> {
     return this.httpClient.get<Group>(GROUPS_API_URL + '/' + groupId);
+  }
+
+  loadGroupMembers(groupId: string): void {
+    this.getGroupMembers(groupId).subscribe(groupMembers => {
+      this.groupMembers.next(groupMembers);
+    });
+  }
+
+  getGroupMembers(groupId: string): Observable<User[]> {
+    return this.httpClient.get<User[]>(GROUPS_API_URL + '/' + groupId + '/members');
   }
 }

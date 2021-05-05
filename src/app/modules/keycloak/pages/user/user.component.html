@@ -6,4 +6,21 @@
     <div>{{user.id}}</div>
   </div>
   <div class="col-2"></div>
+
+  <h4>User Groups: </h4>
+  <table class="table table-bordered table-striped" *ngIf="(groups$ | async) as groups">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Id</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let group of groups">
+      <td>{{group.name}}</td>
+      <td>{{group.id}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

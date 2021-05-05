@@ -14,7 +14,7 @@
     </thead>
 
     <tbody *ngIf="(groups$ | async) as groups">
-    <tr *ngFor="let group of groups, let index = index">
+    <tr *ngFor="let group of groups" routerLink="/groups/{{group.id}}">
       <td>{{group.name}}</td>
       <td>{{group.id}}</td>
     </tr>

@@ -20,7 +20,7 @@
       <td>{{cat.catId}}</td>
       <td>{{cat.name}}</td>
       <td>{{cat.age}}</td>
-      <td class="actionable" routerLink="/users/{{cat.ownerId}}">
+      <td class="actionable" routerLink="/users/{{cat.ownerId}}" *ngIf="">
         <button class="btn btn-ghost-dark">
           <app-user-display [userId]="cat.ownerId"></app-user-display>
         </button>

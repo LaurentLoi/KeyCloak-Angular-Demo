@@ -1,0 +1,28 @@
+<div class="row g-0 d-flex align-items-center m-5" *ngIf="(group$ | async) as group">
+  <div class="col-2">
+    <button class="btn btn-dark" routerLink="/groups">Back to groups</button>
+  </div>
+  <div class="col-8 text-center">
+    <h3>Group :</h3>
+    <div>Name: {{group.name}} - Id: {{group.id}}</div>
+  </div>
+  <div class="col-2"></div>
+
+  <h4>Group Members: </h4>
+  <table class="table table-bordered table-striped" *ngIf="(groupMembers$ | async) as groupMembers">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Id</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let member of groupMembers">
+      <td>{{member.username}}</td>
+      <td>{{member.id}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
