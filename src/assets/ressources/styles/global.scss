@@ -1,3 +1,128 @@
 .full-height {
   height: 90vh;
 }
+
+
+// Base colors
+$theme-color-primary : #fdc08f;
+$theme-color-secondary: #71c5e8;
+
+$theme-color-grey: #6c757d;
+$theme-color-grey-dark: #424242;
+$theme-color-grey-light: #d3d7d9;
+$theme-color-neutral: #f7f9fc;
+
+$color-error: #fe6d73;
+$color-warning: orange;
+
+.field {
+  margin-bottom: 1rem;
+
+  &__head {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0.563rem;
+  }
+
+  &__title {
+    color: $theme-color-grey;
+    margin: 0;
+  }
+}
+
+.error-message {
+  margin-left: 10px;
+  color: $color-warning;
+  &--block{
+    margin-left: 0;
+  }
+}
+
+.tag {
+  font-size: .75rem;
+  position: relative;
+  color: #FFF;
+  z-index: 1;
+  padding: 0 3px;
+  height: 100%;
+
+  &:after {
+    content: '';
+    position: absolute;
+    transition: 200ms ease;
+    background-color: $theme-color-grey;
+    display: block;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 3px;
+    z-index: -1;
+    transform: scaleY(1.2) scaleX(1.05);
+  }
+
+  &--error {
+    &:after {
+      background-color: $color-error;
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, .1);
+  border-radius: 4px;
+  outline: none;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  background-color: $theme-color-neutral; // Neutral color
+  color: $theme-color-grey-dark;
+  transition: background-color .2s, color .2s;
+  font-weight: 600;
+
+  &:focus {
+    background-color: lighten($theme-color-grey, 67%);
+    border-color: $theme-color-secondary;
+    box-shadow: 0 0 2px 0 $theme-color-secondary;
+  }
+}
+
+.center {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.button {
+  font-weight: 600;
+  color: white;
+  border-radius: 4px;
+  transition: 200ms ease-in;
+  cursor: pointer;
+  padding: .777em 1.333em;
+  border: 0;
+  background-color: $theme-color-secondary;
+  font-size: 1rem;
+
+  &:hover {
+    color: white;
+    background-color: $theme-color-primary;
+  }
+
+  &:disabled {
+    cursor: default;
+    background: $theme-color-grey-light;
+    color: #FFF;
+  }
+
+  &--wide {
+    width: 100%;
+  }
+}
+
+
+
+
+

@@ -10,13 +10,21 @@
     <tr>
       <th>Group Name</th>
       <th>Id</th>
+      <th></th>
     </tr>
     </thead>
 
     <tbody *ngIf="(groups$ | async) as groups">
-    <tr *ngFor="let group of groups" routerLink="/groups/{{group.id}}">
-      <td>{{group.name}}</td>
-      <td>{{group.id}}</td>
+    <tr *ngFor="let group of groups">
+      <td routerLink="/groups/{{group.id}}">{{group.name}}</td>
+      <td routerLink="/groups/{{group.id}}">{{group.id}}</td>
+      <td>
+        <select id="{{group.name}}" *ngIf="(users$ | async) as users" (input)="addUserToGroup(group.name, group.id)">
+          <option value="">Add User</option>
+          <option *ngFor="let user of users"
+                  [value]="user.id">{{user.username}}</option>
+        </select>
+      </td>
     </tr>
     </tbody>
   </table>

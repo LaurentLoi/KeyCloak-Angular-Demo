@@ -1,5 +1,7 @@
 <div class="row g-0 d-flex align-items-center m-5">
-  <div class="col-2"></div>
+  <div class="col-2">
+    <button class="btn btn-dark" routerLink="/users/add">Add User</button>
+  </div>
   <div class="col-8 text-center">
     <h3>Users :</h3>
   </div>
@@ -10,13 +12,17 @@
     <tr>
       <th>Username</th>
       <th>Id</th>
+      <th></th>
     </tr>
     </thead>
 
     <tbody *ngIf="(users$ | async) as users">
-    <tr *ngFor="let user of users" routerLink="/users/{{user.id}}">
-      <td>{{user.username}}</td>
-      <td>{{user.id}}</td>
+    <tr *ngFor="let user of users">
+      <td routerLink="/users/{{user.id}}">{{user.username}}</td>
+      <td routerLink="/users/{{user.id}}">{{user.id}}</td>
+      <td class="mx-auto">
+        <button class="btn btn-dark" (click)="deleteUser(user.id)" *ngIf="user.username !== currentUsername">delete</button>
+      </td>
     </tr>
     </tbody>
   </table>

@@ -9,6 +9,7 @@ import {UsersComponent} from './modules/keycloak/pages/users-pages/users/users.c
 import {UserComponent} from './modules/keycloak/pages/users-pages/user/user.component';
 import {GroupsComponent} from './modules/keycloak/pages/groups-pages/groups/groups.component';
 import {GroupComponent} from './modules/keycloak/pages/groups-pages/group/group.component';
+import {AddUserComponent} from './modules/keycloak/pages/users-pages/add-user/add-user.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,12 @@ const routes: Routes = [
         component: UsersComponent,
         canActivate: [AuthGuard],
         data: {roles: ['manager']}
+      },
+      {
+        path: 'users/add',
+        component: AddUserComponent,
+        canActivate: [AuthGuard],
+        data: {roles: ['admin']}
       },
       {
         path: 'users/:id',

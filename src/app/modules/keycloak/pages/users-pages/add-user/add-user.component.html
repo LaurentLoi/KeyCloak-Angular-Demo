@@ -1,1 +1,92 @@
-<p>add-user works!</p>
+<div class="row g-0 d-flex align-items-center m-5">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <form [formGroup]="addUserForm" (ngSubmit)="addNewUser()">
+      <div class="field">
+        <div class="field__head">
+          <label for="first_name" class="field__title">Username&#8239;:</label>
+          <span class="error-message"
+                *ngIf="addUserForm.get('first_name').touched && !addUserForm.get('first_name').valid">
+                    <span class="tag tag--error">error</span> invalid firstname
+                </span>
+        </div>
+        <input class="input" type="text" id="first_name" placeholder="John" formControlName="first_name">
+      </div>
+<!--      <div class="field">-->
+<!--        <div class="field__head">-->
+<!--          <label for="last_name" class="field__title">Lastname&#8239;:</label>-->
+<!--          <span class="error-message"-->
+<!--                *ngIf="addUserForm.get('last_name').touched && !addUserForm.get('last_name').valid">-->
+<!--                    <span class="tag tag&#45;&#45;error">error</span> invalid lastname-->
+<!--                </span>-->
+<!--        </div>-->
+<!--        <input class="input" type="text" id="last_name" placeholder="Doe" formControlName="last_name">-->
+<!--      </div>-->
+      <div class="field">
+        <div class="field__head">
+          <label for="email" class="field__title">Email&#8239;:</label>
+          <span class="error-message" *ngIf="addUserForm.get('email').touched && !addUserForm.get('email').valid">
+                    <span class="tag tag--error">error</span> invalid email
+                </span>
+        </div>
+        <input class="input" type="email" id="email" placeholder="j.doe@westpole.be" formControlName="email">
+      </div>
+      <div class="field">
+        <div class="field__head">
+          <label for="role" class="field__title">Role&#8239;:</label>
+          <span class="error-message" *ngIf="addUserForm.get('role').touched && !addUserForm.get('role').valid">
+                    <span class="tag tag--error">error</span> you have to select a role for the employee
+                </span>
+        </div>
+        <select class="input" id="role" formControlName="role" *ngIf="(groups$ | async) as groups">
+          <option value="">Role</option>
+          <option *ngFor="let group of groups"
+                  [value]="group.name">{{group.name}}</option>
+        </select>
+      </div>
+      <!--  <div class="field">-->
+      <!--    <div class="field__head">-->
+      <!--      <label for="status" class="field__title">Status&#8239;:</label>-->
+      <!--      <span class="error-message"-->
+      <!--            *ngIf="addUserForm.get('status').touched && !addUserForm.get('status').valid">-->
+      <!--                    <span class="tag tag&#45;&#45;error">error</span> you have to select a status for the employee-->
+      <!--                </span>-->
+      <!--    </div>-->
+      <!--    <select class="input" id="status" formControlName="status">-->
+      <!--      <option value="">Select status</option>-->
+      <!--      <option value="{{positionEnum.EMPLOYEE}}">Employee</option>-->
+      <!--      <option value="{{positionEnum.CONSULTANT}}">Consultant</option>-->
+      <!--    </select>-->
+      <!--  </div>-->
+      <!--  <div class="field">-->
+      <!--    <div class="field__head">-->
+      <!--      <label class="field__title">Supervisor&#8239;:</label>-->
+      <!--    </div>-->
+      <!--    <div class="field-user">-->
+
+      <!--      <ul class="field-user__ul">-->
+      <!--        <li class="field-user__el">-->
+      <!--          <div class="user-mention" *ngIf="targetId">-->
+      <!--            <p>{{(displayedUser$ | async).first_name}} {{(displayedUser$ | async).last_name}}</p>-->
+      <!--          </div>-->
+      <!--        </li>-->
+      <!--        <li class="field-user__el">-->
+      <!--          <button type="button" class="add" data-toggle="modal" data-target="#membersModal"-->
+      <!--                  (click)="updateCheckboxes()">-->
+      <!--            <img src="../../../../assets/ressources/img/plus.svg" alt="">-->
+      <!--            <ng-container *ngIf="!targetId">Select supervisor</ng-container>-->
+      <!--            <ng-container *ngIf="targetId">Change supervisor</ng-container>-->
+      <!--          </button>-->
+      <!--        </li>-->
+      <!--      </ul>-->
+      <!--    </div>-->
+      <!--  </div>-->
+
+      <div class="fly-box__controls">
+        <input class="center button button--wide" type="submit" value="Create User"
+               [disabled]="!(addUserForm.valid)">
+      </div>
+    </form>
+  </div>
+  <div class="col-2"></div>
+</div>

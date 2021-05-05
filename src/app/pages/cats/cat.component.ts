@@ -16,17 +16,14 @@ export class CatComponent implements OnInit {
 
   constructor(
     private catService: CatService,
-    private userService: UserService,
-    private keycloakService: KeycloakService
+    private userService: UserService
   ) {
     this.catService.loadAllCats();
   }
 
   async ngOnInit(): Promise<void> {
-    console.log('GET USER ROLES : ', this.keycloakService.getUserRoles());
+    // console.log('GET USER ROLES : ', this.keycloakService.getUserRoles());
     // console.log('GET USERNAME : ', this.keycloakService.getUsername());
-    console.log('GET USER PROFILE : ', await this.keycloakService.getKeycloakInstance().loadUserProfile());
-    const cats = await this.cats$.pipe(first()).toPromise();
-    console.log(cats);
+    // console.log('GET USER PROFILE : ', await this.keycloakService.getKeycloakInstance().loadUserProfile());
   }
 }

@@ -42,6 +42,7 @@ export class AuthGuard extends KeycloakAuthGuard{
         resolve(granted);
       } else {
         this.userService.setCurrentUserRoles(this.keycloakAngular.getUserRoles());
+        this.userService.loadCurrentUserContext(await this.keycloakAngular.getKeycloakInstance().loadUserProfile());
       }
       resolve(granted);
     });

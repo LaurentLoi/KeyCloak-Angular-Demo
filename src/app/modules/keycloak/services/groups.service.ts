@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {Group} from '../models/group.model';
 import {HttpClient} from '@angular/common/http';
-import {GROUPS_API_URL} from '../../../config/http-config';
+import {GROUPS_API_URL, USER_API_URL} from '../../../config/http-config';
 import {User} from '../models/user.model';
 
 @Injectable({
@@ -58,5 +58,16 @@ export class GroupsService {
 
   getGroupMembers(groupId: string): Observable<User[]> {
     return this.httpClient.get<User[]>(GROUPS_API_URL + '/' + groupId + '/members');
+  }
+
+  addUserToGroupByIds(userId: string, groupId: string): void {
+    this.httpClient.put<any>(USER_API_URL + '/' + userId + '/groups/' + groupId, null, {
+      observe: 'body'
+    }).subscribe(body => {
+      console.log(body);
+      console.log(body.status.code);
+    }, error => {
+      alert(error.error.errorMessage);
+    });
   }
 }

@@ -9,14 +9,17 @@ import {first} from 'rxjs/operators';
 })
 export class UsersComponent implements OnInit {
 
+  currentUsername = this.userService.currentUsername;
   users$ = this.userService.users$;
 
   constructor(private userService: UserService) {
     this.userService.loadAllUsers();
   }
 
-  async ngOnInit(): Promise<void> {
-    console.log(await this.users$.pipe(first()).toPromise());
+  ngOnInit(): void {
   }
 
+  deleteUser(userId: string): void {
+    this.userService.deleteUser(userId);
+  }
 }
