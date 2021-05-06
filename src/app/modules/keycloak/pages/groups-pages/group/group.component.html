@@ -14,6 +14,7 @@
     <tr>
       <th>Name</th>
       <th>Id</th>
+      <th></th>
     </tr>
     </thead>
 
@@ -21,6 +22,9 @@
     <tr *ngFor="let member of groupMembers">
       <td>{{member.username}}</td>
       <td>{{member.id}}</td>
+      <td class="mx-auto">
+        <button class="btn btn-dark" (click)="deleteUserFromGroup(member.id, group.id)">remove</button>
+      </td>
     </tr>
     </tbody>
   </table>

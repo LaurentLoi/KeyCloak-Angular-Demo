@@ -26,7 +26,9 @@ export class GroupsService {
     filter(groupMembers => !!groupMembers)
   );
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient
+  ) {
   }
 
   loadAllGroups(): void {
@@ -64,8 +66,19 @@ export class GroupsService {
     this.httpClient.put<any>(USER_API_URL + '/' + userId + '/groups/' + groupId, null, {
       observe: 'body'
     }).subscribe(body => {
-      console.log(body);
-      console.log(body.status.code);
+    }, error => {
+      alert(error.error.errorMessage);
+    });
+  }
+
+  deleteUserFromGroupByIds(userId: string, groupId: string): void {
+    this.httpClient.delete<any>(USER_API_URL + '/' + userId + '/groups/' + groupId, {
+      observe: 'response'
+    }).subscribe(response => {
+      console.log(response.status);
+      if (response.status === 204) {
+        this.loadGroupMembers(groupId);
+      }
     }, error => {
       alert(error.error.errorMessage);
     });
