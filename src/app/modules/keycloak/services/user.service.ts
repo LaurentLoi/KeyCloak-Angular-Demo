@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {User, UserForm} from '../models/user.model';
 import {USER_API_URL} from '../../../config/http-config';
 import {filter} from 'rxjs/operators';
 import {Group} from '../models/group.model';
-import {Router} from '@angular/router';
 import * as Keycloak from 'keycloak-js';
 
 @Injectable({
@@ -26,8 +25,7 @@ export class UserService {
   currentUsername: string;
   currentUserRoles: string[];
 
-  constructor(private httpClient: HttpClient,
-              private router: Router) {
+  constructor(private httpClient: HttpClient) {
   }
 
   loadAllUsers(): void {
@@ -56,7 +54,7 @@ export class UserService {
         }
     }).subscribe(response => {
       if (response.status === 201) {
-        this.router.navigate(['/users']).then();
+        this.loadAllUsers();
       }
     }, error => {
       alert(error.error.errorMessage);
