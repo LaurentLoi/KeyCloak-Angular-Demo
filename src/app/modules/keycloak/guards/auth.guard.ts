@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
 import {KeycloakAuthGuard, KeycloakService} from 'keycloak-angular';
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {async} from 'rxjs';
-import {rejects} from 'assert';
 import {UserService} from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard extends KeycloakAuthGuard{
+export class AuthGuard extends KeycloakAuthGuard {
 
 
   constructor(protected router: Router,

@@ -7,7 +7,9 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
     initOptions: {
       onLoad: 'login-required',
       checkLoginIframe: false
-    }/*,
+    }
+    // This is supposed to be an embedded HttpInterceptor - Did not get it working
+    /*,
     enableBearerInterceptor: true,
     bearerPrefix: 'Bearer',
     bearerExcludedUrls: [
